@@ -1,46 +1,46 @@
---Select *
---From CovidProject.. CovidDeaths
---Order By 3,4
+Select *
+From CovidProject.. CovidDeaths
+Order By 3,4;
 
 
---Select *
---From CovidProject.. CovidVaccinations
---Order By 3,4
+Select *
+From CovidProject.. CovidVaccinations
+Order By 3,4;
 
 
 -- get percentages & do equations in Query
 
---Select location, date, Total_cases, Total_deaths,  (Total_deaths/total_cases)*100 as DeathPercentage
---From CovidProject.. CovidDeaths
---Order By 1,2
+Select location, date, Total_cases, Total_deaths,  (Total_deaths/total_cases)*100 as DeathPercentage
+From CovidProject.. CovidDeaths
+ Order By 1,2;
 
 
 --looking at total cases vs deaths
 -- shows likelihood of dying in your country if you get covid
 
---Select location, date, Total_cases, Total_deaths,  (Total_deaths/total_cases)*100 as DeathPercentage
---From CovidProject.. CovidDeaths
---where location like '%states%'
---Order By 1,2
+Select location, date, Total_cases, Total_deaths,  (Total_deaths/total_cases)*100 as DeathPercentage
+From CovidProject.. CovidDeaths
+where location like '%states%'
+Order By 1,2;
 
 --looking at total cases vs Pop
 
 -- shows percentage of population with covid
---Select location, date, Population, total_cases,  (total_cases/population)*100 as InfectionPercent
---From CovidProject.. CovidDeaths
---where location like '%states%'
---Order By 1,2
+Select location, date, Population, total_cases,  (total_cases/population)*100 as InfectionPercent
+From CovidProject.. CovidDeaths
+where location like '%states%'
+Order By 1,2;
 
 
 
 -- loooking at countries with the highest infection rate compared to population
 
 
---Select location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as InfectionPercent
---From CovidProject.. CovidDeaths
-----where location like '%states%'
---group by location, population
---Order By InfectionPercent desc
+Select location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as InfectionPercent
+From CovidProject.. CovidDeaths
+where location like '%states%'
+group by location, population
+Order By InfectionPercent desc;
 
 --Showing Countries with the highest deathcount per population
 
@@ -49,7 +49,7 @@ From CovidProject.. CovidDeaths
 --where location like '%states%'
 where continent is not null
 group by location, population
-Order By TotalDeathCount desc
+Order By TotalDeathCount desc;
  
  -- Doing it by continent
 
@@ -58,7 +58,7 @@ From CovidProject.. CovidDeaths
 --where location like '%states%'
 where continent is null
 group by location
-Order By TotalDeathCount desc
+Order By TotalDeathCount desc;
 
 --
 
@@ -69,7 +69,7 @@ From CovidProject.. CovidDeaths
 --where location like '%states%'
 where continent is not null
 group by location
-Order By TotalDeathCount desc
+Order By TotalDeathCount desc;
  
  --Global Numbers
 
@@ -78,7 +78,7 @@ as rollingdeathpercent
 from CovidProject..CovidDeaths
 where continent is not null
 --group by date
-order by 1,2
+order by 1,2;
 
 
 --- Joining Vaccination Table
@@ -92,7 +92,7 @@ Join CovidProject..CovidVaccinations vac
 On dea.location = vac.location
 and dea.date = vac.date
 where dea.continent is not null 
-Order by 2,3
+Order by 2,3;
 
 
 
@@ -111,7 +111,7 @@ where dea.continent is not null
 --Order by 2,3
 )
 Select * , (RollingPeopleVacc/Population)*100
-From PopvsVac
+From PopvsVac;
 
 
 -- creating Temp Table
@@ -135,11 +135,11 @@ Join CovidProject..CovidVaccinations vac
 On dea.location = vac.location
 and dea.date = vac.date
 where dea.continent is not null 
---Order by 2,3
+--Order by 2,3;
 
 
 Select * , (RollingPeopleVacc/Population)*100 as RollingvaccPerc
-From #PercentPopulationVacc
+From #PercentPopulationVacc;
 
 
 
@@ -154,10 +154,10 @@ Join CovidProject..CovidVaccinations vac
 On dea.location = vac.location
 and dea.date = vac.date
 where dea.continent is not null 
---Order by 2,3
+--Order by 2,3;
 
 Select * 
-from PercentPopulationVacc
+from PercentPopulationVacc;
 
 
 
