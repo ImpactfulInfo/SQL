@@ -1,4 +1,4 @@
-
+-- Create Procedure
 DELIMITER $$
 DROP PROCEDURE IF EXISTS copy_and_clean_data;
 CREATE PROCEDURE copy_and_clean_data()
@@ -75,7 +75,7 @@ DELIMITER ;
 
 CALL copy_and_clean_data();
 
-
+-- Checking all steps of the procedure worked by checking for duplicates,  # of rows, and typos fixed
 SELECT row_id, id, row_num
 FROM (
 	SELECT row_id, id,
@@ -101,7 +101,7 @@ GROUP BY State_Name;
   ALTER EVENT run_data_clean
  ON SCHEDULE EVERY 30 DAY
  DO CALL copy_and_clean_data();
-
+-- if this were a data set where things got added to it make this
 DELIMITER $$
 CREATE TRIGGER Transfer_clean_data
 AFTER INSERT ON housing.us_household_income
