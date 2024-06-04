@@ -114,8 +114,7 @@ FROM us_household_income
 GROUP BY state_name
 ORDER BY 1 asc
 ;
-
-
+-- Finding average/median income per state
 SELECT i.state_name,  ROUND(AVG(Mean),2), ROUND(AVG(Median),2)
 FROM us_household_income i
  INNER JOIN us_household_income_statistics s
@@ -123,7 +122,8 @@ on i.id=s.id
 WHERE mean <> 0
 GROUP BY i.State_Name
 ORDER BY 2 asc
-;
+ ;
+-- finding averages and median for housing in different areas(city,borough, town, village...etc)
 SELECT type,COUNT(Type),  ROUND(AVG(Mean),2), ROUND(AVG(Median),2)
 FROM us_household_income i
  INNER JOIN us_household_income_statistics s
@@ -133,6 +133,7 @@ GROUP BY type
 HAVING COUNT(Type) >100
 ORDER BY 2 asc
 ;
+-- Sorting by city per state, can be filtered by adding "WHERE i.state_name =" 
 SELECT i.state_name, city, ROUND(AVG(MEAN),1),ROUND(AVG(MEDIAN),1)
 FROM us_household_income i
 INNER JOIN us_household_income_statistics s
