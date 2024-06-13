@@ -1,8 +1,8 @@
--- A Hotel Company has reached out to me to get a few metrics from their datbase.
+-- A Hotel Company has reached out to me to get a few metrics from their database.
 -- What rooms are being booked the most and What rooms bring in the most Revenue?--
 -- What is our cancellation rate?--
 -- What is the best time of year for our company?--
--- What is our companies growth over the past 2 years?--
+-- What is our company growth over the past 2 years?--
 -- Is there a correlation between price and cancellation?
 
 SELECT *
@@ -54,13 +54,13 @@ END as Months
 FROM testing.hotel_reservations
 GROUP BY Months
 Order by revenue desc;
--- August, September, October make up over 1/3 of the Total Revenue the company has seen 
--- While January, February, March  make up just barely a ninth of total profit. 
+-- August, September, and October make up over 1/3 of the Total Revenue the company has seen 
+-- While January, February, and March  make up just barely a ninth of total profit. 
 -- Focus on keeping revenue up during Aug-Oct to compensate for the winter months, or find a way to draw in an audience for those cold winter months
 
 
 
--- What is our companies growth over the past 2 years?
+-- What is our company's growth over the past 2 years?
 SELECT arrival_year, SUM(avg_price_per_room) revenue
 FROM testing.hotel_reservations
 GROUP BY arrival_year
